@@ -1,16 +1,26 @@
-// let multiply = (num1, num2) => num1 * num2;
+// function to play game
+function playRPS () {
 
-// let numba1 = prompt("Give me numba to multipy: ");
-// let numba2 = prompt("Give me another numba: ");
+let userScore = 0;
+let compScore = 0;
+let userChoice;
+let compChoice;
 
-// alert(multiply(numba1, numba2));
+while (userScore < 5 && compScore < 5) {
+    userChoice = getInput();
+    compChoice = getComputerChoice();
+
+    let result = playRound(userChoice, compChoice);
+    if (userScore < 5 && compScore < 5) {
+        alert(result + "\n" + printScore());
+    }
+}
+
+alert(result());
+}
 
 
-// if (confirm("Get computer choice?") == true ) {
-//     alert(getComputerChoice());
-// } else {
-//     alert("You pressed cancel.");
-// }
+//.........Other Functions
 
 function getComputerChoice () {
     let a = "Rock";
@@ -28,61 +38,81 @@ function getComputerChoice () {
     }
 }
 
+function getInput() {
+    
+    do {    
+        userChoice = prompt("Enter Rock, Paper, or Scissors");
+    
+        if (userChoice.trim() === "" || userChoice === null) {
+            prompt("You didnt enter anything");
+        } else if (!(capitalise(userChoice) === "Rock" || capitalise(userChoice) === "Paper" || capitalise(userChoice) === "Scissors")) {
+            alert("Please enter: Rock, Paper, or Scissors to play")
+        }
+    } 
+    while (!(capitalise(userChoice) === "Rock" || capitalise(userChoice) === "Paper" || capitalise(userChoice) === "Scissors"));
+
+    return capitalise(userChoice);
+}
+
 function capitalise (str) {
     let restOfStr = str.substr(1).toLowerCase()
     let cap = str.charAt(0).toUpperCase();
     return cap + restOfStr;
 }
 
+
 function playRound (userChoice, compChoice) {
     switch (true) {
-        case (capitalise(userChoice) === "Rock" && compChoice === "Rock"):            
-            console.log(`Draw, No Winner this time!
-The computer chose ${compChoice} and you chose ${capitalise(userChoice)}.`);
-            break;
-        case (capitalise(userChoice) === "Rock" && compChoice === "Paper"):
-            console.log(`You Lose! Paper beats Rock!
-The computer chose ${compChoice} and you chose ${capitalise(userChoice)}.`);            
-            break;
-        case (capitalise(userChoice) === "Rock" && compChoice === "Scissors"):
-            console.log(`You Win! Rock beats Scissors!
-The computer chose ${compChoice} and you chose ${capitalise(userChoice)}.`);
-            break;
-        case (capitalise(userChoice) === "Paper" && compChoice === "Rock"):
-            console.log(`You Win, Paper beats Rock!
-The computer chose ${compChoice} and you chose ${capitalise(userChoice)}.`);
-            break;
-        case (capitalise(userChoice) === "Paper" && compChoice === "Paper"):
-            console.log(`Draw, No Winner this time!
-The computer chose ${compChoice} and you chose ${capitalise(userChoice)}.`);
-            break;
-        case (capitalise(userChoice) === "Paper" && compChoice === "Scissors"):
-            console.log(`You Lose! Scissors beat Paper!
-The computer chose ${compChoice} and you chose ${capitalise(userChoice)}.`);
-            break;
-        case (capitalise(userChoice) === "Scissors" && compChoice === "Rock"):
-            console.log(`You Lose, Rock beats Scissors!
-The computer chose ${compChoice} and you chose ${capitalise(userChoice)}.`);
-            break;       
-        case (capitalise(userChoice) === "Scissors" && compChoice === "Paper"):
-            console.log(`You Win! Scissors beat paper
-The computer chose ${compChoice} and you chose ${capitalise(userChoice)}.`);
-            break;
-        case (capitalise(userChoice) === "Scissors" && compChoice === "Scissors"):
-            console.log(`Draw, No Winner this time!
-The computer chose ${compChoice} and you chose ${capitalise(userChoice)}.`);
-            break;
+        case (userChoice === "Rock" && compChoice === "Rock"):            
+            return "Draw, No Winner this time!";                
+        case (userChoice === "Rock" && compChoice === "Paper"):
+            compScore++;
+            return "You Lose! Paper beats Rock!"; 
+        case (userChoice === "Rock" && compChoice === "Scissors"):
+            userScore++;
+            return "You Win! Rock beats Scissors!";
+        case (userChoice === "Paper" && compChoice === "Rock"):
+            userScore++;
+            return "You Win, Paper beats Rock!";
+        case (userChoice === "Paper" && compChoice === "Paper"):
+            return "Draw, No Winner this time!";
+        case (userChoice === "Paper" && compChoice === "Scissors"):
+            compScore++;
+            return "You Lose! Scissors beat Paper!";
+        case (userChoice === "Scissors" && compChoice === "Rock"):
+            compScore++;
+            return "You Lose, Rock beats Scissors!";       
+        case (userChoice === "Scissors" && compChoice === "Paper"):
+            userScore++;
+            return "You Win! Scissors beat paper";
+        case (userChoice === "Scissors" && compChoice === "Scissors"):
+            return "Draw, No Winner this time!";
     }
 }
+function printScore () {
+    return `The computer chose ${compChoice} and you chose ${capitalise(userChoice)}.
+Current scores are:\n You: ${userScore}   Computer ${compScore}`
+}
+function result () {
+    if (userScore === 5) {
+        return `You Win! The computer chose ${compChoice} and you chose ${capitalise(userChoice)}.
+Final scores are:\n You: ${userScore}   Computer ${compScore}`
+    } else {
+        return `You Lose! The computer chose ${compChoice} and you chose ${capitalise(userChoice)}.
+Final scores are:\n You: ${userScore}   Computer ${compScore}`
+    }
 
-let userChoice = prompt("Enter Rock, Paper, or Scissors");
-if (userChoice.trim() === "" || userChoice === null) {
-    prompt("You didnt enter anything");
-} else if (capitalise(userChoice) === "Rock" || capitalise(userChoice) === "Paper" || capitalise(userChoice) === "Scissors") {
-    let compChoice = getComputerChoice();
+}
 
-    playRound(userChoice, compChoice);
+// layout 
 
+// Event listener: Click button to change display gameContent and start game
+
+// const startButton = document.querySelector("startButton");
+// startButton.addEventListener('click', )
+
+
+// round using nested if statments in a switch
     // switch (capitalise(userChoice)) {
     //     case "Rock":
     //         if (compChoice === "Rock") {
@@ -112,52 +142,3 @@ if (userChoice.trim() === "" || userChoice === null) {
     //         } 
     //         break;
     // } 
-
-//     switch (true) {
-//         case (capitalise(userChoice) === "Rock" && compChoice === "Rock"):            
-//             console.log(`Draw, No Winner this time!
-// The computer chose ${compChoice} and you chose ${capitalise(userChoice)}.`);
-//             break;
-//         case (capitalise(userChoice) === "Rock" && compChoice === "Paper"):
-//             console.log(`You Lose! Paper beats Rock!
-// The computer chose ${compChoice} and you chose ${capitalise(userChoice)}.`);            
-//             break;
-//         case (capitalise(userChoice) === "Rock" && compChoice === "Scissors"):
-//             console.log(`You Win! Rock beats Scissors!
-// The computer chose ${compChoice} and you chose ${capitalise(userChoice)}.`);
-//             break;
-//         case (capitalise(userChoice) === "Paper" && compChoice === "Rock"):
-//             console.log(`You Win, Paper beats Rock!
-// The computer chose ${compChoice} and you chose ${capitalise(userChoice)}.`);
-//             break;
-//         case (capitalise(userChoice) === "Paper" && compChoice === "Paper"):
-//             console.log(`Draw, No Winner this time!
-// The computer chose ${compChoice} and you chose ${capitalise(userChoice)}.`);
-//             break;
-//         case (capitalise(userChoice) === "Paper" && compChoice === "Scissors"):
-//             console.log(`You Lose! Scissors beat Paper!
-// The computer chose ${compChoice} and you chose ${capitalise(userChoice)}.`);
-//             break;
-//         case (capitalise(userChoice) === "Scissors" && compChoice === "Rock"):
-//             console.log(`You Lose, Rock beats Scissors!
-// The computer chose ${compChoice} and you chose ${capitalise(userChoice)}.`);
-//             break;       
-//         case (capitalise(userChoice) === "Scissors" && compChoice === "Paper"):
-//             console.log(`You Win! Scissors beat paper
-// The computer chose ${compChoice} and you chose ${capitalise(userChoice)}.`);
-//             break;
-//         case (capitalise(userChoice) === "Scissors" && compChoice === "Scissors"):
-//             console.log(`Draw, No Winner this time!
-// The computer chose ${compChoice} and you chose ${capitalise(userChoice)}.`);
-//             break;
-//     }
-
-    // console.log(`Computer chose ${compChoice} and you chose ${capitalise(userChoice)}`);
-       
-
-
-
-} else {
-    alert("Please enter: Rock, Paper, or Scissors to play")
-}
-// alert(userChoice);

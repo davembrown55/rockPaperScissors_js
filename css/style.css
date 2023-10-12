@@ -1,0 +1,76 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    gap: 32px;
+    background-color: darkolivegreen ;
+}
+.startContent {
+    background-color: olive;
+    border: solid 1px  darksalmon;
+    padding: 32px;
+    display: flex;
+    /* display: none; */
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    color: lightgray;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    border-radius: 10px;
+}
+.gameContent {
+    background-color: olive;
+    border: solid 1px  darksalmon;
+    padding: 32px;
+    /* display: flex; */
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    color: lightgray;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    border-radius: 10px;  
+}
+.gameButtons {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 16px;
+}
+
+h1 {
+
+}
+.gameArea {
+    /* background-color:darksalmon; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+button {
+    padding: 16px;
+    border-radius: 10px;
+    border: solid 2px burlywood;
+    background-color:dodgerblue;
+    color: ghostwhite;
+    font-size: 32px;
+    font-weight: 800;
+}
+
+.endGameArea {
+    display: none;
+    /* display: flex; */
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+}
