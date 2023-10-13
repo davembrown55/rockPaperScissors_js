@@ -8,9 +8,9 @@
 </head>
 <body>
     <div class="container">
-        <script  src="js/rps.js">
 
-        </script>
+        <div class="contentArea">
+        
         <div class="startContent">
             <h1>Rock, Paper, Scissors</h1>
                 <div class="gameArea">
@@ -20,43 +20,31 @@
         </div>
 
         <div class="gameContent">
+            <Button class="doneBtn">Done</Button>
+
             <h1>Rock, Paper, Scissors</h1>
                 <div class="gameArea">  
-                    <h2 class="message"></h2>
+                   
+                    
+                    <p class="message"></p>
+                    
                     <h2 >Choose one:</h2>
                     <div class="gameButtons">
-                        <button class="rockButton">Rock</button>
-                        <button class="paperButton">Paper</button>
-                        <button class="scissorsButton">Scissors</button>
+                        <button class="userChoiceBtn" onclick="playRound('Rock')">Rock</button>
+                        <button class="userChoiceBtn" onclick="playRound('Paper')">Paper</button>
+                        <button class="userChoiceBtn" onclick="playRound('Scissors')">Scissors</button>
                     </div>
-                </div>
-                <div class="endGameArea">
-                    <h2 class="message"></h2>
-                    <h2>Click to end:</h2>
-                    <Button class="Done">Done</Button>
-                </div>
 
-
-                
+                    <div class="scores">
+                        <p>User Score: <span id="userScore">0</span></p>
+                        <p>Computer Score: <span id="compScore">0</span></p>   
+                    </div>                    
+                </div>
         </div>
+
+    </div>
         
     </div>
-    
+<script  src="js/rps.js"></script>    
 </body>
 </html>
-
-
-<!-- 
-How to manipulate css / html elements using JS
-
-Order of events: 
-Press button JavaScript program (function) starts to run
-Change Game Area:
-three buttons displayed: Rock, Paper, scissors for user to choose
-message div to display scores and results until end of game.
-
-
-
-
-
- -->
