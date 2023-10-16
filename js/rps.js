@@ -18,11 +18,11 @@ function playRound(userChoice) {
     document.getElementById('compScore').textContent = compScore;
 
     if (userScore >= 5) {
-        result = "You Win!";
+        result = "You Win!<br/> Have another go. First to 5 wins";
         document.querySelector('.message').innerHTML = result;
         resetGame();
     } else if (compScore >= 5) {
-        result = "Computer Wins!";
+        result = "Computer Wins!<br/> Have another go. First to 5 wins";
         document.querySelector('.message').innerHTML = result;
         resetGame();
     }
@@ -39,7 +39,7 @@ function getComputerChoice () {
 function getResult (userChoice, compChoice) {
     switch (true) {
         case (userChoice === compChoice):
-            return "Draw, No Winner this time!";            
+            return "Draw! No Winner this time!";            
         case (userChoice === "Rock" && compChoice === "Paper"):
             compScore++;
             return "You Lose! Paper beats Rock!"; 
@@ -48,13 +48,13 @@ function getResult (userChoice, compChoice) {
             return "You Win! Rock beats Scissors!";
         case (userChoice === "Paper" && compChoice === "Rock"):
             userScore++;
-            return "You Win, Paper beats Rock!";
+            return "You Win! Paper beats Rock!";
         case (userChoice === "Paper" && compChoice === "Scissors"):
             compScore++;
             return "You Lose! Scissors beat Paper!";
         case (userChoice === "Scissors" && compChoice === "Rock"):
             compScore++;
-            return "You Lose, Rock beats Scissors!";       
+            return "You Lose! Rock beats Scissors!";       
         case (userChoice === "Scissors" && compChoice === "Paper"):
             userScore++;
             return "You Win! Scissors beat paper";
@@ -64,7 +64,7 @@ function printChoices (userChoice) {
     if (userChoice === compChoice) {
         return `You both chose ${userChoice}.`;
     } else {
-    return `The computer chose ${compChoice}. You chose ${userChoice}.`;
+    return `The computer chose ${compChoice}. Your choice was ${userChoice}.`;
     }
 }
 
@@ -139,7 +139,7 @@ function capitalise (str) {
 
 
 function printScore () {
-    return `The computer chose ${compChoice} and you chose ${capitalise(userChoice)}.
+    return `The computer chose ${compChoice}. Your choice was ${capitalise(userChoice)}.
 Current scores are:\n You: ${userScore}   Computer ${compScore}`;
 }
 
