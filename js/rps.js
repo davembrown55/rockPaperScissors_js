@@ -1,41 +1,71 @@
-// function to play game
-function playRPS () {
 
+// intialise scores
 let userScore = 0;
 let compScore = 0;
 let userChoice;
 let compChoice;
 
-while (userScore < 5 && compScore < 5) {
-    userChoice = getInput();
-    compChoice = getComputerChoice();
 
-    let result = playRound(userChoice, compChoice);
+const start = document.querySelector('.startButton');
+start.addEventListener('click', () => {
+    userchoice = getInput();
+    compChoice = getComputerChoice(); 
+
+    playRound(userchoice, compChoice);
+    });
+
+// getInput();
+
+function playRound (userChoice, compChoice) {
+    let result = getResult(userChoice, compChoice) + `
+${printChoices(userChoice)}`;
+
     if (userScore < 5 && compScore < 5) {
-        alert(result + "\n" + printScore());
+        alert(`${result} 
+Your score: ${userScore}. Computer score: ${compScore}`);
+        }
+    
+    if (userScore >= 5) {
+        result = "You Win!\n Have another go. First to 5 wins";
+        alert(result + " Your score: " + userScore + ". Computer score: " + compScore);
+
+        resetGame();
+    } else if (compScore >= 5) {
+        result = "Computer Wins!\n Have another go. First to 5 wins";
+        alert(result + " Your score: " + userScore + ". Computer score: " + compScore);
+
+        resetGame();
+    }
+
+
+    // if (userScore < 5 && compScore < 5) {
+    //     alert(result + "\n" + printScore());
+    // }
+    // alert(result());
+}
+
+function printChoices (userChoice) {
+    if (userChoice === compChoice) {
+        return `You both chose ${userChoice}.`;
+    } else {
+    return `The computer chose ${compChoice}. Your choice was ${userChoice}.`;
     }
 }
 
-alert(result());
+function resetGame(){
+    userScore = 0;
+    compScore = 0;
+    // document.getElementById('userScore').textContent = userScore;
+    // document.getElementById('compScore').textContent = compScore;
 }
+
 
 
 //.........Other Functions
 
 function getComputerChoice () {
-    let a = "Rock";
-    let b = "Paper";
-    let c = "Scissors";
-
-    let x = Math.floor((Math.random() * 100) + 1);
-
-    if (x > 0 && x <= 33) {
-        return a;
-    } else if ( x > 33 && x <= 66 ) {
-        return b;
-    } else if ( x > 66 && x <= 100 ) {
-        return c;
-    }
+    const choices = ["Rock", "Paper", "Scissors"];
+    return choices[Math.floor(Math.random() * choices.length)];
 }
 
 function getInput() {
@@ -60,11 +90,10 @@ function capitalise (str) {
     return cap + restOfStr;
 }
 
-
-function playRound (userChoice, compChoice) {
+function getResult (userChoice, compChoice) {
     switch (true) {
-        case (userChoice === "Rock" && compChoice === "Rock"):            
-            return "Draw, No Winner this time!";                
+        case (userChoice === compChoice):
+            return "Draw! No Winner this time!";            
         case (userChoice === "Rock" && compChoice === "Paper"):
             compScore++;
             return "You Lose! Paper beats Rock!"; 
@@ -73,22 +102,20 @@ function playRound (userChoice, compChoice) {
             return "You Win! Rock beats Scissors!";
         case (userChoice === "Paper" && compChoice === "Rock"):
             userScore++;
-            return "You Win, Paper beats Rock!";
-        case (userChoice === "Paper" && compChoice === "Paper"):
-            return "Draw, No Winner this time!";
+            return "You Win! Paper beats Rock!";
         case (userChoice === "Paper" && compChoice === "Scissors"):
             compScore++;
             return "You Lose! Scissors beat Paper!";
         case (userChoice === "Scissors" && compChoice === "Rock"):
             compScore++;
-            return "You Lose, Rock beats Scissors!";       
+            return "You Lose! Rock beats Scissors!";       
         case (userChoice === "Scissors" && compChoice === "Paper"):
             userScore++;
             return "You Win! Scissors beat paper";
-        case (userChoice === "Scissors" && compChoice === "Scissors"):
-            return "Draw, No Winner this time!";
     }
 }
+
+
 function printScore () {
     return `The computer chose ${compChoice} and you chose ${capitalise(userChoice)}.
 Current scores are:\n You: ${userScore}   Computer ${compScore}`
